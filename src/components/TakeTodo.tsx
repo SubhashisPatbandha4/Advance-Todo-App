@@ -3,14 +3,15 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-const TakeTodo = ({ addTodo }) => {
+const TakeTodo = (props:{ addTodo:Function }) => {
+    const { addTodo } = props;
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [time, setTime] = useState();
-    const [work, setWork] = useState();
+    const [time, setTime] = useState("");
+    const [work, setWork] = useState("");
 
     const handleSubmit = () => {
         handleClose();

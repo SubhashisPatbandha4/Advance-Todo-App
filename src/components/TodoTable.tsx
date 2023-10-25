@@ -1,7 +1,8 @@
 import React from 'react'
 import TodoRowItem from './TodoRowItem'
 
-const TodoTable = ({ todoData,deleteTodo }) => {
+const TodoTable = (props:{todoData:TodoModel[],deleteTodo:Function}) => {
+    const {todoData,deleteTodo} = props
     return (
         <>
 
