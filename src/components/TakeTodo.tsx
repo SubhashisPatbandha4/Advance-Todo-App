@@ -3,8 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-const TakeTodo = (props:{ addTodo:Function }) => {
-    const { addTodo } = props;
+export const TakeTodo: React.FC<{ addTodo: Function }> = ({ addTodo }) => {
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -74,4 +74,3 @@ const TakeTodo = (props:{ addTodo:Function }) => {
     );
 }
 
-export default TakeTodo;

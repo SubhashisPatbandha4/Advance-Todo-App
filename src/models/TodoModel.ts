@@ -1,10 +1,10 @@
 class TodoModel{
   
-    key:number;
+    index:number;
     time:string;
     work:string;
-    constructor(key:number, time:string,work:string){
-        this.key = key;
+    constructor(index:number, time:string,work:string){
+        this.index = index;
         this.time = time;
         this.work = work;
     }

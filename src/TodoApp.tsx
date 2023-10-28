@@ -1,18 +1,20 @@
 
 import React, { useState } from 'react';
 import './App.css';
-import TodoTable from './components/TodoTable';
-import TakeTodo from './components/TakeTodo';
+import { TodoTable } from './components/TodoTable';
+import { TakeTodo } from './components/TakeTodo';
 
-function App() {
-  const [todoData, setTodoData] = useState<{ key: number; time: string; work: string }[]>([]);
-  const addTodo = (time:string, work:string) => {
-    let todo = {key:todoData.length+1, time: time, work: work }
+const App = () => {
+  const [todoData, setTodoData] = useState<{ index: number; time: string; work: string }[]>([]);
+  const addTodo = (time: string, work: string) => {
+    let todo = { index: todoData.length + 1, time: time, work: work }
     setTodoData([...todoData, todo])
 
   }
-  const deleteTodo = (key:number) => {
-    setTodoData(todoData.filter(todo => todo.key !== key))
+  const deleteTodo = (index: number) => {
+    setTodoData(todoData.filter(todo => todo.index !== index).map((todo, newIndex) => ({
+      ...todo, index: newIndex + 1
+    })))
   }
   return (
     <div className='d-flex justify-content-center'>
@@ -45,7 +47,9 @@ function App() {
             todoData.length !== 0 ?
               (
                 <>
-                  <TakeTodo addTodo={addTodo} /><TodoTable todoData={todoData} deleteTodo={deleteTodo}/>
+                  <TakeTodo addTodo={addTodo} />
+                  <TodoTable todoData={todoData} deleteTodo={deleteTodo} />
+                  {console.log(todoData)}
                 </>
               ) :
               (

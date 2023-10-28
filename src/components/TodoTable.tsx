@@ -1,8 +1,8 @@
 import React from 'react'
-import TodoRowItem from './TodoRowItem'
+import { TodoRowItem } from './TodoRowItem'
 
-const TodoTable = (props:{todoData:TodoModel[],deleteTodo:Function}) => {
-    const {todoData,deleteTodo} = props
+export const TodoTable: React.FC<{ todoData: TodoModel[], deleteTodo: Function }> = ({ todoData, deleteTodo }) => {
+
     return (
         <>
 
@@ -19,12 +19,15 @@ const TodoTable = (props:{todoData:TodoModel[],deleteTodo:Function}) => {
                     </tr>
                 </thead>
                 <tbody>
-
-                    <TodoRowItem todoData={todoData} deleteTodo={deleteTodo} />
+                    {
+                        todoData.map((todo) => (
+                            <TodoRowItem index={todo.index} time={todo.time} work={todo.work} deleteTodo={deleteTodo} />
+                        ))
+                    }
                 </tbody>
             </table>
         </>
     )
 }
 
-export default TodoTable
+

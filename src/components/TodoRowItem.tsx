@@ -1,42 +1,24 @@
 import React from 'react'
+import { generateRandomColorClass } from '../functions/randomColor'
+export const TodoRowItem: React.FC<{ index: number, time: string, work: string, deleteTodo: Function }> =
+    ({ index, time, work, deleteTodo }) => {
+        return (
+            <>
 
-const TodoRowItem = (props:{todoData:TodoModel[],deleteTodo:Function}) => {
-    const {todoData,deleteTodo} = props
-    const generateRandomColorClass = () => {
-        const colors = [
-            'table-primary',
-            'table-secondary',
-            'table-success',
-            'table-danger',
-            'table-warning',
-            'table-info',
-            'table-light',
-            'table-dark',
-        ];
-        const randomIndex = Math.floor(Math.random() * colors.length);
-        return colors[randomIndex];
-    };
+                <tr className={generateRandomColorClass()} key={index}>
 
-    return (
-        <>
-        {
-            todoData ? todoData.map((todo, key:number) => (
-                <tr className={generateRandomColorClass()}>
-                    <td>{key + 1}</td>
-                    <td>{todo.work}</td>
-                    <td> {todo.time}</td>
+                    <td>{index}</td>
+                    <td>{work}</td>
+                    <td> {time}</td>
                     <td className='d-flex justify-content-evenly'>
                         <span><i className="bi bi-check2-circle"></i></span>
                         <span><i className="bi bi-pencil-fill"></i></span>
-                        <span onClick={() => deleteTodo(todo.key)}> <i className="bi bi-trash3"></i></span>
+                        <span onClick={() => deleteTodo(index)}> <i className="bi bi-trash3"></i></span>
                     </td>
                 </tr>
-            )) : ""
-        }
-        </>
+
+            </>
 
 
-    )
-}
-
-export default TodoRowItem
+        )
+    }
